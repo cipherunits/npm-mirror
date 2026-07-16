@@ -1,0 +1,18 @@
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:6
+
+    container_name: npm-mirror
+
+    restart: unless-stopped
+
+    ports:
+      - "4873:4873"
+
+    volumes:
+      - ./storage:/verdaccio/storage
+      - ./config:/verdaccio/conf
+      - ./plugins:/verdaccio/plugins
+
+    environment:
+      VERDACCIO_APPDIR: /verdaccio

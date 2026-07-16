@@ -1,0 +1,35 @@
+storage: /verdaccio/storage
+
+plugins: /verdaccio/plugins
+
+web:
+  title: Mananeagaar NPM Mirror
+
+server:
+  keepAliveTimeout: 60
+
+auth:
+  htpasswd:
+    file: /verdaccio/storage/htpasswd
+
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+
+packages:
+  "@*/*":
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+
+  "**":
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+
+logs:
+  - type: stdout
+    format: pretty
+    level: http
+
+max_body_size: 1000mb
