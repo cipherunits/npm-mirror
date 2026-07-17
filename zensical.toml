@@ -1,0 +1,44 @@
+[project]
+site_name = "NPM Mirror"
+site_description = "یک Registry داخلی مبتنی بر Verdaccio برای Mirror و Cache npm"
+site_author = "Mohammad Taha Batoomi"
+repo_url = "https://github.com/MohammadTahaBatoomi/npm-mirror"
+edit_uri = "edit/main/docs/"
+
+docs_dir = "docs"
+site_dir = "site"
+
+language = "fa"
+
+nav = [
+  { "شروع" = "index.md" },
+  { "نحوه کار" = "how-it-works.md" },
+  { "نصب و راه‌اندازی" = "getting-started.md" },
+  { "پیکربندی" = "configuration.md" },
+  { "پیش‌بارگذاری" = "preload.md" },
+  { "ساختار پروژه" = "structure.md" },
+  { "آفلاین بودن" = "offline.md" }
+]
+
+features = [
+  "navigation.tracking",
+  "navigation.path",
+  "navigation.prune",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.top",
+  "content.code.copy",
+  "content.footnote.tooltips",
+  "content.tooltips",
+  "search.highlight"
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+scheme = "default"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "تغییر تم"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/MohammadTahaBatoomi/npm-mirror"
