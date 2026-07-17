@@ -48,5 +48,5 @@ shell:
 	docker exec -it npm-mirror sh
 
 preload:
-	chmod +x scripts/install.sh
-	./scripts/install.sh
+	chmod +x preload/install-packages.sh
+	./preload/install-packages.sh

@@ -44,14 +44,172 @@
 
 ---
 
+# پیش‌نیازها
+
+- Docker
+- Docker Compose
+- Make
+
+---
+
+# نصب و راه‌اندازی
+
+## ۱. کلون کردن پروژه
+
+```bash
+git clone <repository-url>
+cd npm_mirrors
+```
+
+## ۲. اجرای سرویس
+
+```bash
+make up
+```
+
+## ۳. بررسی وضعیت
+
+```bash
+make ps
+```
+
+یا
+
+```bash
+make logs
+```
+
+## ۴. دسترسی به Registry
+
+پس از اجرا، Registry در آدرس زیر قابل دسترسی است:
+
+```
+http://localhost:4873
+```
+
+---
+
+# تنظیم Registry روی سیستم
+
+## npm
+
+```bash
+npm config set registry http://localhost:4873
+```
+
+## pnpm
+
+```bash
+pnpm config set registry http://localhost:4873
+```
+
+## yarn
+
+```bash
+yarn config set registry http://localhost:4873
+```
+
+---
+
+# پیش‌بارگذاری پکیج‌ها
+
+برای پیش‌بارگذاری پکیج‌های موجود در `preload/packages.txt`:
+
+```bash
+make preload
+```
+
+یا به صورت دستی:
+
+```bash
+chmod +x preload/install-packages.sh
+./preload/install-packages.sh
+```
+
+---
+
+# دستورات Makefile
+
+```
+make up        - Start Verdaccio
+make down      - Stop Verdaccio
+make restart   - Restart Verdaccio
+make logs      - Follow logs
+make ps        - Show container status
+make build     - Recreate container
+make pull      - Pull latest image
+make clean     - Remove container
+make reset     - Remove container and storage
+make shell     - Open shell inside container
+make preload   - Start install package
+```
+
+---
+
 # ساختار پروژه
 
 ```
-npm/
+npm_mirrors/
 ├── docker-compose.yml
+├── Makefile
 ├── config/
 │   └── config.yaml
-└── storage/
+├── preload/
+│   ├── package.json
+│   ├── packages.txt
+│   └── install-packages.sh
+├── storage/
+└── plugins/
+```
+
+---
+
+## Makefile
+
+```
+make up        - Start Verdaccio
+make down      - Stop Verdaccio
+make restart   - Restart Verdaccio
+make logs      - Follow logs
+make ps        - Show container status
+make build     - Recreate container
+make pull      - Pull latest image
+make clean     - Remove container
+make reset     - Remove container and storage
+make shell     - Open shell inside container
+make preload   - Start install package
+```
+
+---
+
+## preload/
+
+این پوشه برای پیش‌بارگذاری پکیج‌ها در Registry استفاده می‌شود.
+
+```
+preload/
+├── package.json
+├── packages.txt
+└── install-packages.sh
+```
+
+### packages.txt
+
+لیست پکیج‌هایی که باید پیش‌بارگذاری شوند. هر پکیج در یک خط جداگانه قرار داده می‌شود.
+
+### install-packages.sh
+
+اسکریپتی که پکیج‌های موجود در `packages.txt` را نصب می‌کند.
+
+```bash
+chmod +x preload/install-packages.sh
+./preload/install-packages.sh
+```
+
+یا از طریق Makefile:
+
+```bash
+make preload
 ```
 
 ---
@@ -110,6 +268,14 @@ storage/
 اگر این پوشه حذف شود، تمام Cache از بین خواهد رفت.
 
 به همین دلیل باید از آن Backup تهیه شود.
+
+---
+
+## plugins/
+
+پوشه‌ای برای پلاگین‌های سفارشی Verdaccio.
+
+در حال حاضر خالی است و در صورت نیاز به پلاگین‌های سفارشی می‌توانید فایل‌های مربوطه را در اینجا قرار دهید.
 
 ---
 

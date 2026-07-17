@@ -1,20 +1,11 @@
 {
-  "name": "Npm_Mirror_Preload",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "Mana_Npm_Mirrors",
+  "version": "2.0.0",
+  "private": true,
+  "author": {
+    "name": "MohammadTahaBatoomi",
+    "email": "tbatoomi@gmail.com",
+    "url": "https://cipherunit.xyz"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.5.2",
-      "onFail": "download"
-    }
-  },
-  "type": "module"
+  "homepage": "https://cipherunit.xyz"
 }
