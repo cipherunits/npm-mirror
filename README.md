@@ -57,7 +57,7 @@
 ## ۱. کلون کردن پروژه
 
 ```bash
-git clone <repository-url>
+git clone https://git.mananegaar.ir/mananegaar/npm_mirrror
 cd npm_mirrors
 ```
 
