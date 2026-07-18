@@ -1,5 +1,5 @@
 ---
-title: "NPM Mirror — Offline NPM Registry Cache | Cipher Unit"
+title: "NPM Mirror — Offline NPM Registry Cache"
 description: "Self-hosted Verdaccio-based npm registry that mirrors and caches npm, pnpm, and yarn packages for faster installs and offline development during network outages."
 ---
 
