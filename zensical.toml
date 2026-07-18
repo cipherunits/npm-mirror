@@ -14,8 +14,10 @@ nav = [
   { "شروع" = "index.md" },
   { "نحوه کار" = "how-it-works.md" },
   { "نصب و راه‌اندازی" = "getting-started.md" },
+  { "راه‌اندازی برای تیم" = "team-setup.md" },
   { "پیکربندی" = "configuration.md" },
   { "پیش‌بارگذاری" = "preload.md" },
+  { "Backup و Restore" = "backup.md" },
   { "ساختار پروژه" = "structure.md" },
   { "آفلاین بودن" = "offline.md" }
 ]

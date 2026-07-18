@@ -8,9 +8,10 @@ npm_mirrors/
 │   └── config.yaml
 ├── preload/
 │   ├── package.json
-│   ├── packages.txt
+│   ├── packages.conf
 │   └── install-packages.sh
 ├── storage/
+├── backups/
 └── plugins/
 ```
 
@@ -59,7 +60,11 @@ storage/
 └── ...
 ```
 
-اگر این پوشه حذف شود، تمام Cache از بین خواهد رفت. به همین دلیل باید از آن Backup تهیه شود.
+اگر این پوشه حذف شود، تمام Cache از بین خواهد رفت. به همین دلیل باید از آن Backup تهیه شود؛ نگاه کنید به [backup.md](./backup.md).
+
+## backups/
+
+خروجی دستور `make backup`. فایل‌های فشرده‌ی `storage/` با برچسب زمانی اینجا ذخیره می‌شوند. این پوشه در Git ذخیره نمی‌شود.
 
 ## plugins/
 

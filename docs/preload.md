@@ -1,6 +1,6 @@
 # پیش‌بارگذاری پکیج‌ها
 
-برای پیش‌بارگذاری پکیج‌های موجود در `preload/packages.txt`:
+برای پیش‌بارگذاری همه‌ی پکیج‌های موجود در `preload/packages.conf`:
 
 ```bash
 make preload
@@ -9,8 +9,9 @@ make preload
 یا به صورت دستی:
 
 ```bash
-chmod +x preload/install-packages.sh
-./preload/install-packages.sh
+cd preload
+chmod +x install-packages.sh
+./install-packages.sh
 ```
 
 ## ساختار پوشه preload
@@ -18,14 +19,46 @@ chmod +x preload/install-packages.sh
 ```
 preload/
 ├── package.json
-├── packages.txt
+├── packages.conf
 └── install-packages.sh
 ```
 
-### packages.txt
+### packages.conf
 
-لیست پکیج‌هایی که باید پیش‌بارگذاری شوند. هر پکیج در یک خط جداگانه قرار داده می‌شود.
+لیست پکیج‌هایی که باید پیش‌بارگذاری شوند، هر خط به این شکل:
 
-### install-packages.sh
+```
+next@13                             #tags: frontend,framework
+```
 
-اسکریپتی که پکیج‌های موجود در `packages.txt` را نصب می‌کند.
+اضافه یا حذف پکیج فقط با ویرایش همین فایل انجام می‌شود؛ نیازی به تغییر در اسکریپت یا Makefile نیست.
+
+## Profile ها
+
+هر پکیج یک یا چند تگ دارد (`frontend`, `backend`, `mobile`, `desktop`, `tooling`, `testing`, `database`, ...). با متغیر `PROFILE` می‌توانید فقط پکیج‌های یک تگ خاص را پیش‌بارگذاری کنید:
+
+```bash
+make preload PROFILE=frontend
+make preload PROFILE=backend
+make preload PROFILE=mobile
+```
+
+اگر `PROFILE` مشخص نشود، مقدار پیش‌فرض `all` است و همه‌ی پکیج‌ها نصب می‌شوند.
+
+لیست کامل تگ‌های موجود در ابتدای فایل `packages.conf` مستند شده است.
+
+## Incremental Preload
+
+اگر `make preload` را دوباره اجرا کنید، به صورت پیش‌فرض همه‌ی پکیج‌ها دوباره بررسی می‌شوند (چون Verdaccio خودش پکیج‌های موجود در Storage را دوباره دانلود نمی‌کند، ولی اسکریپت به‌صورت پیش‌فرض درخواست نصب را برای همه می‌فرستد). برای این‌که اسکریپت خودش هم پکیج‌هایی که قبلاً با موفقیت پردازش شده‌اند را رد کند:
+
+```bash
+make preload INCREMENTAL=1
+```
+
+وضعیت پکیج‌های نصب‌شده در فایل `preload/.preload-state` نگهداری می‌شود (در Git ذخیره نمی‌شود). برای شروع دوباره از صفر، این فایل را حذف کنید.
+
+### ترکیب Profile و Incremental
+
+```bash
+make preload PROFILE=frontend INCREMENTAL=1
+```
